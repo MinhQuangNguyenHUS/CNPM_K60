@@ -1,8 +1,8 @@
 # TimeTable
    TimeTable là ứng dụng quản lí, sắp xếp thời gian biểu cá nhân.
  
-   1. Tính năng cơ bản của ứng dụng:
-   Người dùng có thể tạo một thời gian biểu cá nhân.Ứng dụng sẽ dựa theo thời gian biểu của người dùng mà sẽ có thông báo,nhắc nhở giúp người dùng sinh hoạt đúng giờ. Công việc sẽ được ứng dụng gợi ý chia thành từng loại có cùng tính chất
+   ## 1. Tính năng cơ bản của ứng dụng:
+   ### Người dùng có thể tạo một thời gian biểu cá nhân.Ứng dụng sẽ dựa theo thời gian biểu của người dùng mà sẽ có thông báo,nhắc nhở giúp người dùng sinh hoạt đúng giờ. Công việc sẽ được ứng dụng gợi ý chia thành từng loại có cùng tính chất
 Khi đến mốc thời gian hoàn thành công việc,ứng dụng sẽ có thông báo để người dùng hoàn thành công việc và sau đó sẽ so khớp thời gian với thời gian trong thời gian biểu. Ngoài ra ứng dụng cũng sẽ đưa ra lời động viên, khen ngợi khi người dùng hoàn thành công việc.
    Mức độ hoàn thành theo thời gian biểu sẽ được ứng dụng tổng hợp, thống kê theo từng ngày, từng tuần từng tháng. Người dùng có thể 
 chia sẻ kết quả thống kê của mình qua mạng xã hội
