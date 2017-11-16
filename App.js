@@ -28,21 +28,24 @@ const instructions = Platform.select({
 export default class App extends Component<{}> {
     constructor(){
         super();
-        let ref = firebase.database().ref();
-        let object = {
-            "users" : {
-                "quydt": {
-                    "name": "quy",
-                    "age": "21"
-                },
-                "quangnm": {
-                    "name": "quang",
-                    "age": "21"
-                }
-            }
-        };
-        ref.set(object);
-
+        // this.writeUserData('01', 'Dang Tien Quy', 'quyruatq1997@gmail.com', 'C:\\Users\\Dell Precision\\Desktop\\check\\834900.png');
+        // this.readUserData('01')
+        // this.deleteUserData();
+    }
+    writeUserData(userId, name, email, imageUrl) {
+        firebase.database().ref('users/' + userId).set({
+            username: name,
+            email: email,
+            profile_picture : imageUrl
+        });
+    }
+    readUserData(userId: string) {
+        firebase.database().ref('users/' + userId).on('value', function (snapshot) {
+            console.log(snapshot.val())
+        });
+    }
+    deleteUserData() {
+        firebase.database().ref().remove();
     }
     render() {
         return (
