@@ -4,6 +4,7 @@
  * @flow
  */
 
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import React, {Component} from 'react';
 import {
     Platform,
@@ -11,10 +12,11 @@ import {
     Text,
     View
 } from 'react-native';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
+// import firebase from 'react-native-firebase'
 firebase.initializeApp({
     apiKey: "AIzaSyDQWwwG1OAzcz3b64Qbm-VTjA4a74D8MWY",
-    authDomain: "timetable-645e5.firebaseio.com",
+    authDomain: "timetable-645e5.firebaseapp.com",
     databaseURL: "https://timetable-645e5.firebaseio.com/",
     storageBucket: "timetable-645e5.appspot.com",
 });
@@ -24,28 +26,51 @@ const instructions = Platform.select({
     android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
-
 export default class App extends Component<{}> {
+    fbAu(){
+        LoginManager.logInWithReadPermissions(['public_profile']).then(
+            function (result) {
+                if (result.isCancelled){
+                    alert("Login cancelled")
+                } else {
+                    AccessToken.getCurrentAccessToken().then((accessTokenData) => {
+                        const credential = firebase.auth().FacebookAuthProvider.credential(accessTokenData.accessToken);
+                        firebase.auth().signInWithCredential(credential).then((result) => {
+
+                        }, (error) => {
+                            console.log('error');
+                        })
+                    }, (error => {
+                        console.log("Some error occured: " + error)
+                    }))
+                }
+            },
+            function (error) {
+                alert('Login fail with error: ' + error)
+            }
+        )
+    }
     constructor(){
         super();
         // this.writeUserData('01', 'Dang Tien Quy', 'quyruatq1997@gmail.com', 'C:\\Users\\Dell Precision\\Desktop\\check\\834900.png');
         // this.readUserData('01')
         // this.deleteUserData();
+        this.fbAu();
     }
     writeUserData(userId, name, email, imageUrl) {
-        firebase.database().ref('users/' + userId).set({
+        firebase.app().database().ref('users/' + userId).set({
             username: name,
             email: email,
             profile_picture : imageUrl
         });
     }
     readUserData(userId: string) {
-        firebase.database().ref('users/' + userId).on('value', function (snapshot) {
+        firebase.app().database().ref('users/' + userId).on('value', function (snapshot) {
             console.log(snapshot.val())
         });
     }
     deleteUserData() {
-        firebase.database().ref().remove();
+        firebase.app().database().ref().remove();
     }
     render() {
         return (
