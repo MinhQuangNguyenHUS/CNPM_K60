@@ -7,11 +7,11 @@
 import { AccessToken, LoginManager, LoginButton, ShareDialog } from 'react-native-fbsdk';
 import React, {Component} from 'react';
 import {
-    Button,
-    Platform,
+    Button, KeyboardAvoidingView,
+    Platform, ScrollView, StatusBar,
     StyleSheet,
-    Text,
-    View
+    Text, TouchableOpacity,
+    View, Keyboard, Image
 } from 'react-native';
 import firebase from 'firebase';
 import LinearGradient from 'react-native-linear-gradient';
@@ -36,27 +36,6 @@ export default class App extends Component<{}> {
         contentUrl: "https://facebook.com",
         contentDescription: 'Wow, check out this great site!',
     };
-    fbAu=()=>{
-        LoginManager.logInWithReadPermissions(['public_profile']).then(
-            function (result) {
-                if (result.isCancelled){
-                    alert('Login cancelled');
-                } else {
-                    AccessToken.getCurrentAccessToken().then((accessTokenData) => {
-                        const credential = firebase.auth.FacebookAuthProvider.credential(accessTokenData.accessToken);
-                        firebase.auth().signInWithCredential(credential).then((result) => {
-                        }, (error) => {
-                            alert(error)
-                        })
-                    }, (error => {
-                        console.log('Some error occured: ' + error);
-                    }))
-                }
-            }, function (error) {
-                alert('Login fail with error: ' + error);
-            }
-        )
-    }
     shareLinkWithShareDialog() {
         var tmp = this;
         ShareDialog.canShow(this.shareLinkContent).then(
@@ -79,10 +58,6 @@ export default class App extends Component<{}> {
             }
         );
     }
-    componentWillMount(){
-        // this.fbAu();
-        // this.shareLinkWithShareDialog();
-    }
     writeUserData(userId, name, email, imageUrl) {
         firebase.app().database().ref('users/' + userId).set({
             username: name,
@@ -100,31 +75,89 @@ export default class App extends Component<{}> {
     }
     render() {
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingView behavior="padding" style={styles.container}>
+                <StatusBar
+                    hidden={true}
+                />
                 <LinearGradient colors={['#d4faf7', '#e4efd2', '#fcdb93']} style={styles.linnear}>
+                    <Text style={{fontSize: 40, color: 'black', marginTop: 20}}>App Name</Text>
+                    <TouchableOpacity
+                        style={{width: 100, height: 100, backgroundColor: 'white', borderRadius: 100, marginTop: 20, marginBottom: 35}}
+                        onPress={() =>{Keyboard.dismiss()}}>
+                    </TouchableOpacity>
                     <LoginForm/>
-                    <LoginButton
-                        publishPermissions={["publish_actions"]}
-                        onLoginFinished={
-                            (error, result) => {
-                                if (error) {
-                                    alert("login has error: " + result.error);
-                                } else if (result.isCancelled) {
-                                    alert("login is cancelled.");
-                                } else {
-                                    AccessToken.getCurrentAccessToken().then(
-                                        (data) => {
-                                            alert(data.accessToken.toString())
-                                        }
-                                    )
+                    <TouchableOpacity
+                        onPress={() => Keyboard.dismiss()}
+                        style={{borderColor: 'black',
+                            backgroundColor: 'transparent',
+                            borderWidth: 1,
+                            borderRadius: 10,
+                            marginTop: 25,
+                            height: 35, width: 135,
+                            alignItems: 'center', justifyContent: 'center'}}
+                    >
+                        <Text style={{fontFamily: 'Montserrat-Light', color: 'black'}}>
+                            LOGIN
+                        </Text>
+                    </TouchableOpacity>
+                    <View style={{flexDirection: 'row'}}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            return LoginManager.logInWithReadPermissions(['public_profile']).then(
+                                function (result) {
+                                    if (result.isCancelled){
+                                        alert('Login cancelled');
+                                    } else {
+                                        AccessToken.getCurrentAccessToken().then((accessTokenData) => {
+                                            const credential = firebase.auth.FacebookAuthProvider.credential(accessTokenData.accessToken);
+                                            firebase.auth().signInWithCredential(credential).then((result) => {
+                                            }, (error) => {
+                                                alert(error)
+                                            })
+                                        }, (error => {
+                                            console.log('Some error occured: ' + error);
+                                        }))
+                                    }
+                                }, function (error) {
+                                    alert('Login fail with error: ' + error);
                                 }
-                            }
-                        }
-                        onLogoutFinished={() => alert("logout.")}
-                    />
+                            )
+                        } }
+                    >
+                        <Image
+                            source={require('./assets/image/_Path_.png')}
+                            style={{height: 40, width: 40, marginTop: 30, marginRight: 20}}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                    >
+                        <Image
+                           source={require('./assets/image/_Group_.png')}
+                           style={{height: 35, width: 55, marginTop: 30,  marginLeft: 20}}
+                         />
+                    </TouchableOpacity>
+                    </View>
+                    {/*<LoginButton*/}
+                        {/*publishPermissions={["publish_actions"]}*/}
+                        {/*onLoginFinished={*/}
+                            {/*(error, result) => {*/}
+                                {/*if (error) {*/}
+                                    {/*alert("login has error: " + result.error);*/}
+                                {/*} else if (result.isCancelled) {*/}
+                                    {/*alert("login is cancelled.");*/}
+                                {/*} else {*/}
+                                    {/*AccessToken.getCurrentAccessToken().then(*/}
+                                        {/*(data) => {*/}
+                                            {/*alert(data.accessToken.toString())*/}
+                                        {/*}*/}
+                                    {/*)*/}
+                                {/*}*/}
+                            {/*}*/}
+                        {/*}*/}
+                        {/*onLogoutFinished={() => alert("logout.")}*/}
+                    {/*/>*/}
                 </LinearGradient>
-
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
@@ -135,18 +168,8 @@ const styles = StyleSheet.create({
     },
     linnear: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
     },
 });
