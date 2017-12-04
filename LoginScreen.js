@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import React, {Component} from 'react';
 import {
@@ -20,6 +14,9 @@ import LoginForm from "./LoginForm";
 // import firebase from 'react-native-firebase'
 
 export default class LoginScreen extends Component<{}> {
+    static navigationOptions = ({
+        header: null,
+    });
 
     componentWillMount() {
         firebase.initializeApp({
@@ -41,11 +38,11 @@ export default class LoginScreen extends Component<{}> {
                     hidden={true}
                 />
                 <LinearGradient colors={['#eaeaea', '#eaeaea']} style={styles.linnear}>
-                    <Text style={{fontSize: 40, color: 'black', marginTop: 20}}>App Name</Text>
+                    <Text style={{fontSize: 40, color: 'black', marginTop: 20, fontFamily: 'Montserrat-Light'}}>App Name</Text>
                     <TouchableOpacity
                         style={{
-                            width: 100,
-                            height: 100,
+                            width: 120,
+                            height: 120,
                             backgroundColor: 'white',
                             borderRadius: 100,
                             marginTop: 20,
