@@ -152,6 +152,10 @@ dependencies {
         exclude(group: 'com.facebook.android', module: 'facebook-android-sdk')
     }
     compile('com.facebook.android:facebook-android-sdk:4.22.1')
+    compile(project(":react-native-google-signin")){
+            exclude group: "com.google.android.gms" // very important
+    }
+    compile 'com.google.android.gms:play-services-auth:11.4.2'
     compile project(':react-native-linear-gradient')
 }
 
@@ -161,7 +165,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'
 project.ext.vectoricons = [
     iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf', 'Entypo.ttf', 'Feather.ttf', 'FontAwesome.ttf', 'MaterialCommunityIcons.ttf' ] // Name of the font files you want to copy
 ]

@@ -6,14 +6,12 @@
 
 import React, {Component} from 'react';
 import {
-    Button,
-    Platform,
     StyleSheet,
     Text, TextInput,
-    View, Dimensions,
-    Keyboard, TouchableOpacity, ScrollView
+    View, Dimensions, TouchableOpacity
 } from 'react-native';
 const  {height, width} = Dimensions.get('window');
+import * as firebase from 'firebase';
 import Icon from 'react-native-vector-icons/Feather';
 export default class LoginForm extends Component<{}> {
     constructor(){
@@ -27,6 +25,7 @@ export default class LoginForm extends Component<{}> {
         this.setState({
             username: value
         })
+
     }
     getPassword(value){
         this.setState({
@@ -50,7 +49,9 @@ export default class LoginForm extends Component<{}> {
                         autoCorrect={false}
                         onChangeText={(value)=>{this.getUsername(value)}}
                         underlineColorAndroid="transparent"
-                        onSubmitEditing={() => this.passwordInput.focus()}
+                        onSubmitEditing={() => {
+                            this.passwordInput.focus()
+                        }}
                         style={styles.input}
                     />
                 </View>
@@ -70,8 +71,25 @@ export default class LoginForm extends Component<{}> {
                         style={styles.input}
                     />
                 </View>
+                <TouchableOpacity
+                    onPress={() => {
+                        firebase.auth().createUserWithEmailAndPassword(this.state.username, this.state.password).catch(function(error) {
+                            alert("Login fail with: " + error);
+                        });
+                    }}
+                    style={{borderColor: 'black',
+                        backgroundColor: 'transparent',
+                        borderWidth: 1,
+                        borderRadius: 10,
+                        marginTop: 25,
+                        height: 35, width: 135,
+                        alignItems: 'center', justifyContent: 'center'}}
+                >
+                    <Text style={{fontFamily: 'Montserrat-Light', color: 'black'}}>
+                        LOGIN
+                    </Text>
+                </TouchableOpacity>
             </View>
-
         );
     }
 }
@@ -87,21 +105,12 @@ const styles = StyleSheet.create({
     },
     container: {
         flexDirection: 'column',
+        alignItems: 'center'
     },
     component: {
         flexDirection: 'row',
         borderBottomWidth: 1,
         borderBottomColor: 'black',
         marginBottom: 10,
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
     },
 });
