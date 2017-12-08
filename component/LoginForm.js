@@ -46,6 +46,7 @@ export default class LoginForm extends Component<{}> {
                         onSubmitEditing={() => {
                             this.passwordInput.focus()
                         }}
+                        ref={(input) => this.usernameInput = input}
                         style={styles.input}
                     />
                 </View>
@@ -70,6 +71,8 @@ export default class LoginForm extends Component<{}> {
                         firebase.auth().createUserWithEmailAndPassword(this.state.username, this.state.password).catch(function(error) {
                             alert("Login fail with: " + error);
                         });
+                        this.usernameInput.clear();
+                        this.passwordInput.clear();
                     }}
                     style={{borderColor: 'black',
                         backgroundColor: 'transparent',
@@ -90,7 +93,7 @@ export default class LoginForm extends Component<{}> {
 
 const styles = StyleSheet.create({
     input: {
-        height: 35,
+        height: 36,
         width: width - 170,
         fontFamily: 'Montserrat-Light',
         alignItems: 'flex-end',

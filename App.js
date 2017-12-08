@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import {
     StyleSheet, View,
 } from 'react-native';
-// import Navigator from "./Navigator";
+import Navigator from "./Navigator";
 // import AppFooter from "./AppFooter";
 
-export default class LoginScreen extends Component<{}> {
+export default class App extends Component<{}> {
     render(){
         return (
             <View style={styles.container}>
-                {/*<Navigator></Navigator>*/}
+                <Navigator></Navigator>
                 {/*<View style={{flexDirection: 'row',alignSelf: 'flex-end'}}>*/}
                     {/*<AppFooter/>*/}
                 {/*</View>*/}
