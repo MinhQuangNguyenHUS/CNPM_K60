@@ -1,16 +1,15 @@
-
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     KeyboardAvoidingView,
     StyleSheet,
     Text,
     View,  TextInput,
-    //StatusBar, Image, TouchableOpacity,
+    //StatusBar, Image,
+    TouchableOpacity,
 } from 'react-native';
-// import EvilIcons from "react-native-vector-icons/EvilIcons";
-// import Entypo from "react-native-vector-icons/Entypo";
+import  MyDatePicker from "./MyDatePicker.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from "react-native-vector-icons/Feather";
 
 
 export default class AddTaskScreen extends Component<{}>{
@@ -18,26 +17,22 @@ export default class AddTaskScreen extends Component<{}>{
         return(
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
                 <View>
-                    <View style={{backgroundColor: 'skyblue', height:50, flexDirection:'row'}}>
-                        <view>
+                    <View style={{backgroundColor: 'skyblue', height:50, flexDirection:'row'}}>{/*title*/}
+                        <TouchableOpacity>
                             <Ionicons
-                                marginTop={10}
-                                marginLeft={50}
-                                flex={1}
+                                style={{marginLeft:15   , flex: 1 }}
                                 name='ios-close'
-                                size={60}/>
-                        </view>
-                        <Text style={{flex: 3, marginTop:10, justifyContent:'center'}}>Add new task</Text>
-                        <view>
+                                size={58}/>
+                        </TouchableOpacity>
+                        <Text style={{flex: 3, justifyContent:'center'}}>Add new task</Text>
+                        <TouchableOpacity>
                             <Icon
-                                marginTop={40}
-                                flex={1}
+                                style={{marginRight: 20,marginTop:4, flex: 1}}
                                 name='check'
-                                size={30}/>
-                        </view>
-
+                                size={35}/>
+                        </TouchableOpacity>
                     </View>
-                    <View>
+                    <View style={{marginLeft: 30, borderBottom:10}}>{/*meeting*/}
                         <TextInput
                             placeholder="Add title"
                             placeholderTextColor="gray"
@@ -45,35 +40,30 @@ export default class AddTaskScreen extends Component<{}>{
                             autoCapitalize="none"
                             autoCorrect={false}
                             underlineColorAndroid="transparent"/>
-                        <Text style={{Color:'black'}}> Meeting at ABC Coffee </Text>
+                        <Text style={{color:'black'}}> Meeting at ABC Coffee </Text>
                     </View>
-                    <View style={{flexDirection:'row'}}>
-                        <View>
-                            <TextInput
-                                flex={1}
-                                // keyboardType="date"
-                                placeholder="Start date"
-                                placeholderTextColor="gray"
-                                returnKeyType="next"
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                underlineColorAndroid="transparent"/>
-                            <Text style={{Color:'black'}}> Date </Text>
+                    <View style={{flexDirection:'row'}}>{/*datepicker*/}
+                        <View style={{flex: 1, marginLeft: 30}}>
+                            <MyDatePicker style={{marginRight:10}}/>
+                            <Text style={{color:'black'}}> Date </Text>
                         </View>
-                        <View>
-                            <TextInput
-                                flex={1}
-                                // keyboardType="date"
-                                placeholder="End date"
-                                placeholderTextColor="gray"
-                                returnKeyType="next"
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                underlineColorAndroid="transparent"/>
-                            <Text style={{Color:'black'}}> Date </Text>
+                        <View style={{flex: 1, marginLeft: 30}}>
+                            <MyDatePicker/>
+                            {/*<TextInput*/}
+                                {/*style={{flex: 1}}*/}
+                                {/*// keyboardType="date"*/}
+                                {/*placeholder="End date"*/}
+                                {/*placeholderTextColor="gray"*/}
+                                {/*returnKeyType="next"*/}
+                                {/*autoCapitalize="none"*/}
+                                {/*autoCorrect={false}*/}
+                                {/*underlineColorAndroid="transparent"/>*/}
+                            <Text style={{color:'black'}}> Date </Text>
                         </View>
                     </View>
+                    <View>{/*all day check*/}
 
+                    </View>
 
                 </View>
             </KeyboardAvoidingView>
