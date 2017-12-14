@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "firebase": "^4.6.2",
+    "lzma-native": "^3.0.4",
     "react": "^16.0.0",
     "react-native": "^0.50.3",
     "react-native-fbsdk": "^0.6.3",
