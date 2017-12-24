@@ -7,7 +7,11 @@ import {
 const  {height, width} = Dimensions.get('window');
 import * as firebase from 'firebase';
 import Icon from 'react-native-vector-icons/Feather';
+import LoginScreen from "../view/LoginScreen";
 export default class LoginForm extends Component<{}> {
+    // static navigationOptions = ({
+    //     header: null,
+    // });
     constructor(){
         super();
         this.state = {
@@ -68,7 +72,7 @@ export default class LoginForm extends Component<{}> {
                 </View>
                 <TouchableOpacity
                     onPress={() => {
-                        firebase.auth().createUserWithEmailAndPassword(this.state.username, this.state.password).catch(function(error) {
+                        firebase.auth().createUserWithEmailAndPassword(this.state.username, this.state.password).then(() => {alert("Login success")} ).catch(function(error) {
                             alert("Login fail with: " + error);
                         });
                         this.usernameInput.clear();

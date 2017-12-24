@@ -10,9 +10,6 @@ export default class App extends Component<{}> {
         return (
             <View style={styles.container}>
                 <Navigator></Navigator>
-                {/*<View style={{flexDirection: 'row',alignSelf: 'flex-end'}}>*/}
-                    {/*<AppFooter/>*/}
-                {/*</View>*/}
             </View>
         )
     }

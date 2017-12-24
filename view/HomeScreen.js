@@ -43,6 +43,9 @@ export default class HomeScreen extends Component<{}> {
                             </View>
                         </View>
                     </View>
+                    <View style={{flexDirection: 'row',alignSelf: 'flex-end'}}>
+                        <AppFooter/>
+                    </View>
                 </LinearGradient>
             </View>
         );
