@@ -4,19 +4,19 @@ import DatePicker from 'react-native-datepicker'
 export default class MyDatePicker extends Component<{}> {
     constructor(props){
         super(props);
-        this.state = {date: "2016-05-15"}
+        this.state = {date: "2017-12-26"}
     }
 
     render(){
         return (
             <DatePicker
-                style={{width: 170, marginTop:10, marginBottom:10}}
+                style={{width: 140, marginTop:10, marginBottom:15}}
                 date={this.state.date}
                 mode="date"
                 placeholder="select date"
                 format="YYYY-MM-DD"
-                minDate="2016-05-01"
-                maxDate="2016-06-01"
+                minDate="2017-01-01"
+                maxDate="2017-12-01"
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 customStyles={{

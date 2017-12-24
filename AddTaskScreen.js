@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import  MyDatePicker from "./MyDatePicker.js";
+import  MyCheckbox from "./MyCheckbox.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Icon from "react-native-vector-icons/Feather";
 
@@ -16,53 +17,47 @@ export default class AddTaskScreen extends Component<{}>{
     render(){
         return(
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
-                <View>
-                    <View style={{backgroundColor: 'skyblue', height:50, flexDirection:'row'}}>{/*title*/}
+                <View style={{flex: 1, backgroundColor: '#eaeaea'}}>
+                    <View style={{backgroundColor: 'skyblue', height:50, flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}}>{/*title*/}
                         <TouchableOpacity>
                             <Ionicons
-                                style={{marginLeft:15   , flex: 1 }}
+                                style={{marginLeft:15}}
                                 name='ios-close'
                                 size={58}/>
                         </TouchableOpacity>
-                        <Text style={{flex: 3, justifyContent:'center'}}>Add new task</Text>
+                        <Text>Add new task</Text>
                         <TouchableOpacity>
                             <Icon
-                                style={{marginRight: 20,marginTop:4, flex: 1}}
+                                style={{marginRight: 15}}
                                 name='check'
                                 size={35}/>
                         </TouchableOpacity>
                     </View>
-                    <View style={{marginLeft: 30, borderBottom:10}}>{/*meeting*/}
-                        <TextInput
+                    <View style={{ borderBottomWidth:1, borderBottomColor: '#919191'}}>{/*meeting*/}
+                        <TextInput style={{marginLeft: 30}}
                             placeholder="Add title"
                             placeholderTextColor="gray"
                             returnKeyType="next"
                             autoCapitalize="none"
                             autoCorrect={false}
                             underlineColorAndroid="transparent"/>
-                        <Text style={{color:'black'}}> Meeting at ABC Coffee </Text>
+                        <Text style={{marginLeft: 30, color:'black',paddingBottom:10 }}> Meeting at ABC Coffee </Text>
                     </View>
-                    <View style={{flexDirection:'row'}}>{/*datepicker*/}
+                    <View style={{flexDirection:'row', borderBottomWidth:1, borderBottomColor: '#919191'}}>{/*datepicker*/}
                         <View style={{flex: 1, marginLeft: 30}}>
+                            <Text style={{color:'gray'}}> Start date </Text>
                             <MyDatePicker style={{marginRight:10}}/>
-                            <Text style={{color:'black'}}> Date </Text>
                         </View>
-                        <View style={{flex: 1, marginLeft: 30}}>
-                            <MyDatePicker/>
-                            {/*<TextInput*/}
-                                {/*style={{flex: 1}}*/}
-                                {/*// keyboardType="date"*/}
-                                {/*placeholder="End date"*/}
-                                {/*placeholderTextColor="gray"*/}
-                                {/*returnKeyType="next"*/}
-                                {/*autoCapitalize="none"*/}
-                                {/*autoCorrect={false}*/}
-                                {/*underlineColorAndroid="transparent"/>*/}
-                            <Text style={{color:'black'}}> Date </Text>
+                        <View style={{flex: 1, marginRight:30 ,borderLeftWidth:1, borderLeftColor: '#919191'}}>
+                            <Text style={{color:'gray', marginLeft: 20,}}> End date </Text>
+                            <MyDatePicker style={{ }}/>
                         </View>
                     </View>
-                    <View>{/*all day check*/}
-
+                    <View style={{flexDirection:'row', borderBottomWidth:1, borderBottomColor: '#919191', marginTop:'20'}}>{/*all day check*/}
+                        <View>
+                                <MyCheckbox/>
+                        </View>
+                        <Text>ALL DAY</Text>
                     </View>
 
                 </View>
