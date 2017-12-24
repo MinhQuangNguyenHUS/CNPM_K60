@@ -7,13 +7,12 @@ import {
     View, Image, Dimensions, TextInput
 } from 'react-native';
 
-const {height, width} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 import * as firebase from 'firebase';
 import Icon from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
 import {GoogleSignin} from 'react-native-google-signin';
-import LoginForm from "../component/LoginForm";
-import GoogleServiceCommand from "../lib/GoogleServiceCommand";
+import ServiceCommand from "../lib/ServiceCommand";
 import FirebaseInit from "../const/FirebaseInit";
 
 export default class LoginScreen extends Component<{}> {
@@ -33,7 +32,6 @@ export default class LoginScreen extends Component<{}> {
         this.setState({
             username: value
         })
-
     }
 
     getPassword(value) {
@@ -72,7 +70,6 @@ export default class LoginScreen extends Component<{}> {
                             marginBottom: 35
                         }}
                         onPress={() => {
-
                             GoogleSignin.signOut()
                                 .then(() => {
                                     console.log('out');
@@ -130,7 +127,7 @@ export default class LoginScreen extends Component<{}> {
                         <TouchableOpacity
                             onPress={() => {
                                 firebase.auth().createUserWithEmailAndPassword(this.state.username, this.state.password).then(() => {
-                                    this.props.navigation.navigate('homeScreen');
+                                    this.props.navigation.navigate('homeScreen', {data: this.state.username});
                                 }).catch(function (error) {
                                     alert("Login fail with: " + error);
                                 });
@@ -155,7 +152,9 @@ export default class LoginScreen extends Component<{}> {
                     <View style={{flexDirection: 'row'}}>
                         <TouchableOpacity
                             onPress={() => {
-                                GoogleServiceCommand.facebookSignIn();
+                                ServiceCommand.facebookSignIn().then(() => {
+                                    this.props.navigation.navigate('homeScreen', {data: ServiceCommand.getUserDataFb()});
+                                });
                             }}
                         >
                             <Image
@@ -165,7 +164,9 @@ export default class LoginScreen extends Component<{}> {
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => {
-                                GoogleServiceCommand.googleSignIn();
+                                ServiceCommand.googleSignIn().then(() => {
+                                    this.props.navigation.navigate('homeScreen', {data: ServiceCommand.getGoogleUser()});
+                                });
                             }}
                         >
                             <Image

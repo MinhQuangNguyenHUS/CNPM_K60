@@ -7,14 +7,17 @@ import {
     //StatusBar, Image,
     TouchableOpacity,
 } from 'react-native';
-import  MyDatePicker from "../component/AddTaskScreen\'s component/MyDatePicker.js";
-import  MyTimePicker from "../component/AddTaskScreen\'s component/MyTimePicker.js";
-import  MyCheckbox from "../component/AddTaskScreen\'s component/MyCheckbox.js";
+import  MyDatePicker from "../component/MyDatePicker.js";
+import  MyTimePicker from "../component/MyTimePicker.js";
+import  MyCheckbox from "../component/MyCheckbox.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Icon from "react-native-vector-icons/Feather";
 
 
 export default class AddTaskScreen extends Component<{}>{
+    static navigationOptions = ({
+        header: null,
+    });
     render(){
         return(
             <KeyboardAvoidingView behavior="padding" style={styles.container}>

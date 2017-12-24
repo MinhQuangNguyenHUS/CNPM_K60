@@ -6,14 +6,19 @@ import {
     View, Image
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import AppFooter from '../component/AppFooter'
-import App from "../App";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import EvilIcons from "react-native-vector-icons/EvilIcons";
+
 export default class HomeScreen extends Component<{}> {
     static navigationOptions = ({
         header: null,
     });
 
+    constructor(){
+        super();
+    }
     render() {
+        const {username} = this.props.navigation.state.params;
         return (
             <View style={{flex: 1}}>
                 <StatusBar
@@ -21,7 +26,8 @@ export default class HomeScreen extends Component<{}> {
                 />
                 <LinearGradient colors={['#eaeaea', '#eaeaea']} style={styles.linnear}>
                     <View style={{flex: 1, alignItems: 'center'}}>
-                        <Text style={{color: 'black', fontFamily: 'Montserrat-Light', fontSize: 40, marginTop: 20}}>App Name</Text>
+                        <Text style={{color: 'black', fontFamily: 'Montserrat-Light', fontSize: 40, marginTop: 20}}>App
+                            Name</Text>
                         <View style={{
                             borderWidth: 5,
                             backgroundColor: 'white',
@@ -31,7 +37,7 @@ export default class HomeScreen extends Component<{}> {
                             marginTop: 50,
                             padding: 5
                         }}>
-                            <Text>fdajfhdlafjdkjaflkjdklafjlkdsajflkdjalkfjdla</Text>
+                            <Text>Have a good day {username}</Text>
                         </View>
                         <View style={{marginTop: 50, flexDirection: 'row'}}>
                             <Image
@@ -43,8 +49,32 @@ export default class HomeScreen extends Component<{}> {
                             </View>
                         </View>
                     </View>
-                    <View style={{flexDirection: 'row',alignSelf: 'flex-end'}}>
-                        <AppFooter/>
+                    <View style={{flexDirection: 'row', alignSelf: 'flex-end'}}>
+                        <View style={{
+                            flex: 1,
+                            justifyContent: 'space-around',
+                            flexDirection: 'row',
+                            backgroundColor: '#5882ff'
+                        }}>
+                            <View style={styles.component}>
+                                <TouchableOpacity onclick={() => {this.props.navigation.navigate('homeScreen', {username: username})}}>
+                                    <Ionicons
+                                        name='ios-home-outline'
+                                        size={40}
+                                        style={styles.icon}
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.component}>
+                                <TouchableOpacity onclick={() => {this.props.navigation.navigate('listScreen', {username: username})}}>
+                                    <EvilIcons
+                                        name='check'
+                                        size={40}
+                                        style={styles.icon}
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                     </View>
                 </LinearGradient>
             </View>
@@ -61,5 +91,14 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
+    },
+    component: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 50,
+    },
+    icon: {
+        color: 'black',
+        marginHorizontal: 35,
     },
 });
