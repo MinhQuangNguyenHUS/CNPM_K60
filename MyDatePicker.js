@@ -16,7 +16,7 @@ export default class MyDatePicker extends Component<{}> {
                 placeholder="select date"
                 format="YYYY-MM-DD"
                 minDate="2017-01-01"
-                maxDate="2017-12-01"
+                maxDate="2017-12-31"
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 customStyles={{

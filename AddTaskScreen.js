@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import  MyDatePicker from "./MyDatePicker.js";
+import  MyTimePicker from "./MyTimePicker.js";
 import  MyCheckbox from "./MyCheckbox.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Icon from "react-native-vector-icons/Feather";
@@ -53,13 +54,43 @@ export default class AddTaskScreen extends Component<{}>{
                             <MyDatePicker style={{ }}/>
                         </View>
                     </View>
-                    <View style={{flexDirection:'row', borderBottomWidth:1, borderBottomColor: '#919191', marginTop:'20'}}>{/*all day check*/}
+                    <View style={{flexDirection:'row', borderBottomWidth:1, borderBottomColor: '#919191',paddingTop:10,paddingBottom:10}}>{/*all day check*/}
                         <View>
                                 <MyCheckbox/>
                         </View>
-                        <Text>ALL DAY</Text>
+                        <Text style={{color:'black'}}>ALL DAY</Text>
                     </View>
+                    <View style={{flexDirection:'row', borderBottomWidth:1, borderBottomColor: '#919191'}}>{/*timepicker*/}
+                        <View style={{flex: 1, marginLeft: 30}}>
+                            <Text style={{color:'gray'}}> Start time </Text>
+                            <MyTimePicker/>
+                        </View>
+                        <View style={{flex: 1, marginRight:30, borderLeftWidth:1, borderLeftColor: '#919191'}}>
+                            <Text style={{color:'gray', marginLeft: 20,}}> End time </Text>
+                            <MyTimePicker/>
+                        </View>
+                    </View>
+                    <View style={{paddingTop:10,paddingBottom:10}}>{/*checkbox*/}
 
+                        <View style={{flexDirection:'row', paddingTop:10,paddingBottom:10}}>{/*remind me before*/}
+                            <View>
+                                <MyCheckbox/>
+                            </View>
+                            <Text style={{color:'black'}}>REMIND ME BEFORE</Text>
+                        </View>
+                        <View style={{flexDirection:'row', paddingTop:10,paddingBottom:10}}>{/*location*/}
+                            <View>
+                                <MyCheckbox/>
+                            </View>
+                            <Text style={{color:'black'}}>LOCATION</Text>
+                        </View>
+                        <View style={{flexDirection:'row', paddingTop:10,paddingBottom:10}}>{/*note*/}
+                            <View>
+                                <MyCheckbox/>
+                            </View>
+                            <Text style={{color:'black'}}>NOTE</Text>
+                        </View>
+                    </View>
                 </View>
             </KeyboardAvoidingView>
         );
