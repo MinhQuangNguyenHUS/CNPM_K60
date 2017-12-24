@@ -3028,7 +3028,7 @@ lru-cache@^4.0.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-lzma-native@^3.0.1:
+lzma-native@^3.0.1, lzma-native@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/lzma-native/-/lzma-native-3.0.4.tgz#1fe863dbbbaa58f8132dfcf7df261ec9af6f2b72"
   dependencies:
@@ -3815,6 +3815,10 @@ react-native-linear-gradient@^2.3.0:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.3.0.tgz#757997197e35edf52e290891a11566e462845da1"
   dependencies:
     prop-types "^15.5.10"
+
+react-native-sortable-listview@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/react-native-sortable-listview/-/react-native-sortable-listview-0.2.7.tgz#d0677970f30c38eb5905aea5043cd9656a7597e4"
 
 react-native-tab-view@^0.0.70:
   version "0.0.70"
