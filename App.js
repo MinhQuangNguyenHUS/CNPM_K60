@@ -3,15 +3,13 @@ import {
     StyleSheet, View,
 } from 'react-native';
 import Navigator from "./Navigator";
-// import AppFooter from "./AppFooter";
-import Intro from './test/Intro'
+import AppFooter from "./component/AppFooter";
 
 export default class App extends Component<{}> {
     render(){
         return (
             <View style={styles.container}>
                 <Navigator></Navigator>
-                {/*<Intro/>*/}
                 {/*<View style={{flexDirection: 'row',alignSelf: 'flex-end'}}>*/}
                     {/*<AppFooter/>*/}
                 {/*</View>*/}
