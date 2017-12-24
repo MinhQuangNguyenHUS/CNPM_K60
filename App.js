@@ -3,7 +3,6 @@ import {
     StyleSheet, View,
 } from 'react-native';
 import Navigator from "./Navigator";
-import AppFooter from "./component/AppFooter";
 
 export default class App extends Component<{}> {
     render(){
