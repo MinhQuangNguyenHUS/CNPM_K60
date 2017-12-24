@@ -63,10 +63,4 @@ const styles = StyleSheet.create({
         color: 'black',
         marginHorizontal: 35,
     },
-    linnear: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
 });
