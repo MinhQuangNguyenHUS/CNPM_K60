@@ -6,6 +6,8 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.database.RNFirebaseDatabasePackage;
@@ -37,7 +39,9 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-            new MainReactPackage(), new FBSDKPackage(mCallbackManager),
+            new MainReactPackage(),
+            new VectorIconsPackage(),
+            new RNGoogleSigninPackage(), new FBSDKPackage(mCallbackManager),
             new RNFirebasePackage(),
             new RealmReactPackage(),
             new RNFirebaseDatabasePackage(),
